@@ -19,7 +19,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Loyiha fayllarini yuklash
+
 COPY . .
 
 # Django uchun environment sozlamalari
