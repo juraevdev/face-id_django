@@ -26,7 +26,7 @@ COPY . .
 ENV DJANGO_SETTINGS_MODULE=config.settings
 
 # Collect static (agar kerak bo‘lsa)
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 # Port
 EXPOSE 8000
