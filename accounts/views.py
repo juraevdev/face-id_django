@@ -19,7 +19,7 @@ class RegisterView(generics.GenericAPIView):
     def post(self, request):
         username = request.data.get('username')
         email = request.data.get('email')
-        face_image = request.data.get('face_image')
+        face_image = request.FILES.get('face_image')
 
         if not (username and email and face_image):
             return Response({"error": "All fields are required."}, status=status.HTTP_400_BAD_REQUEST)
@@ -34,7 +34,8 @@ class RegisterView(generics.GenericAPIView):
         user = CustomUser.objects.create(
             username=username,
             email=email,
-            face_encoding=face_encoding.tolist()
+            face_encoding=face_encoding.tolist(),
+            face_image=face_image
         )
         serializer = CustomUserSerializer(user)
         return Response({"message": "User registered successfully", "user": serializer.data}, status=status.HTTP_201_CREATED)
